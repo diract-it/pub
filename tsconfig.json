@@ -15,7 +15,7 @@
     "target": "es5"
   },
   "files": [
-    "ceyenne-fo-base.ts",
+    "ceyenne.ts",
     "src/services/log/log.services.ts",
     "src/services/user/user.services.ts"
   ],

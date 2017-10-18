@@ -25,4 +25,4 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /*jshint esversion: 6 */
 __export(require("./src/services/log/log.services.js"));
 __export(require("./src/services/user/user.services.js"));
-//# sourceMappingURL=ceyenne-fo-base.js.map
+//# sourceMappingURL=ceyenne.js.map

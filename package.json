@@ -1,14 +1,14 @@
 {
-  "name": "ceyenne2020-fo-base",
-  "version": "3.0.7",
-  "description": "ceyenne base front end classes",
-  "main": "./ceyenne-fo-base.ts",
-  "typings": "./ceyenne-fo-base.d.ts",
+  "name": "ceyenne",
+  "version": "1.0.0",
+  "description": "ceyenne front end shared classes toolkit",
+  "main": "./ceyenne.ts",
+  "typings": "./ceyenne.d.ts",
   "scripts": {
     "precompile": "tsc",
     "test": "ng test"
   },
-  "author": "Oscar Bout",
+  "author": "Diract IT BV",
   "license": "ISC",
   "dependencies": {
     "@angular/common": "^4.4.5",
@@ -64,10 +64,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/OBout/ceyenne-fo-base.git"
+    "url": "git+https://github.com/diract-it/pub.git"
   },
   "bugs": {
-    "url": "https://github.com/OBout/ceyenne-fo-base/issues"
+    "url": "https://github.com/diract-it/pub/issues"
   },
-  "homepage": "https://github.com/OBout/ceyenne-fo-base#readme"
+  "homepage": "https://github.com/diract-it/pub#readme",
+  "keywords": [
+    "ceyenne"
+  ]
 }

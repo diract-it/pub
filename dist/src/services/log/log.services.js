@@ -9,13 +9,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const core_1 = require("@angular/core");
-let CeyenneLogService = class CeyenneLogService {
-    constructor(debug_console) {
+var core_1 = require("@angular/core");
+var CeyenneLogService = /** @class */ (function () {
+    function CeyenneLogService(debug_console) {
         this.debug_console = false;
         this.debug_console = debug_console;
     }
-    error(message, obj1, obj2, obj3, obj4) {
+    CeyenneLogService.prototype.error = function (message, obj1, obj2, obj3, obj4) {
         if (this.debug_console === true) {
             if (message) {
                 if (!obj1) {
@@ -36,8 +36,8 @@ let CeyenneLogService = class CeyenneLogService {
                 }
             }
         }
-    }
-    warn(message, obj1, obj2, obj3, obj4) {
+    };
+    CeyenneLogService.prototype.warn = function (message, obj1, obj2, obj3, obj4) {
         if (this.debug_console === true) {
             if (message) {
                 if (!obj1) {
@@ -58,8 +58,8 @@ let CeyenneLogService = class CeyenneLogService {
                 }
             }
         }
-    }
-    info(message, obj1, obj2, obj3, obj4) {
+    };
+    CeyenneLogService.prototype.info = function (message, obj1, obj2, obj3, obj4) {
         if (this.debug_console === true) {
             if (message) {
                 if (!obj1) {
@@ -80,8 +80,8 @@ let CeyenneLogService = class CeyenneLogService {
                 }
             }
         }
-    }
-    log(message, obj1, obj2, obj3, obj4) {
+    };
+    CeyenneLogService.prototype.log = function (message, obj1, obj2, obj3, obj4) {
         if (this.debug_console === true) {
             if (message) {
                 if (!obj1) {
@@ -102,8 +102,8 @@ let CeyenneLogService = class CeyenneLogService {
                 }
             }
         }
-    }
-    datalog(message, obj1, obj2, obj3, obj4) {
+    };
+    CeyenneLogService.prototype.datalog = function (message, obj1, obj2, obj3, obj4) {
         if (this.debug_console === true) {
             if (message) {
                 if (!obj1) {
@@ -124,8 +124,8 @@ let CeyenneLogService = class CeyenneLogService {
                 }
             }
         }
-    }
-    debug(message, obj1, obj2, obj3, obj4) {
+    };
+    CeyenneLogService.prototype.debug = function (message, obj1, obj2, obj3, obj4) {
         if (this.debug_console === true) {
             if (message) {
                 if (!obj1) {
@@ -146,10 +146,11 @@ let CeyenneLogService = class CeyenneLogService {
                 }
             }
         }
-    }
-};
-CeyenneLogService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [Boolean])
-], CeyenneLogService);
+    };
+    CeyenneLogService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [Boolean])
+    ], CeyenneLogService);
+    return CeyenneLogService;
+}());
 exports.CeyenneLogService = CeyenneLogService;

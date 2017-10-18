@@ -12,11 +12,12 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const core_1 = require("@angular/core");
-const http_1 = require("@angular/http");
+var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
+var Rx_1 = require("rxjs/Rx");
 require("rxjs/add/operator/map");
-let UserService = class UserService {
-    constructor(http) {
+var UserService = /** @class */ (function () {
+    function UserService(http) {
         this.http = http;
         this.currentUser = {};
         this.authenticated = false;
@@ -24,105 +25,99 @@ let UserService = class UserService {
         this.config = {};
         // constructed
     }
-    ngOnInit() {
+    UserService.prototype.ngOnInit = function () {
         // thats empty
-    }
-    isAuthenticated() { return this.authenticated; }
-    init(config) {
+    };
+    UserService.prototype.isAuthenticated = function () {
+        return Rx_1.Observable.of(this.authenticated);
+    };
+    UserService.prototype.init = function (config) {
         this.config = config;
-    }
-    getAuthenticationtoken() {
+    };
+    UserService.prototype.getAuthenticationtoken = function () {
         // get auth token from sessionStorage
         return this.authenticationToken;
-    }
-    getCurrentUser() {
+    };
+    UserService.prototype.getCurrentUser = function () {
         // returning current user let curu: any = this.currentUser; let curjson: any =JSON.parse(curu);
         return this.currentUser;
-    }
-    logout() {
+    };
+    UserService.prototype.logout = function () {
         console.log("loggin out");
         this.currentUser = {};
         this.authenticated = false;
         this.authenticationToken = "";
-    }
-    login(username, password, redirect) {
-        let headers = new http_1.Headers({ "Content-Type": "application/x-www-form-urlencoded",
+    };
+    UserService.prototype.login = function (username, password, token, redirect) {
+        var _this = this;
+        var headers = new http_1.Headers({ "Content-Type": "application/x-www-form-urlencoded",
             "Authorization": "Basic " + this.config.CONFIRMATIONTOKEN });
-        let conString = this.config.SERVERPROTOCOL + this.config.SERVERURL + ":" + this.config.SERVERPORT + this.config.LOGINURL;
-        let body = "grant_type=password&username=" + username + "&password=" + password + "&client_id=" + this.config.APPLICATIONID + "&scope=api";
-        // let options: any = {headers: headers};
-        let loginAction;
-        // if (this.config.METHOD) {
-        //     if (this.config.METHOD === "local") {
-        //         loginAction = this
-        //             .http
-        //             .get(conString);
-        //     } else {
-        // console.log("posting", conString);
+        var conString = this.config.SERVERPROTOCOL + this.config.SERVERURL + ":" + this.config.SERVERPORT + this.config.LOGINURL;
+        var body = "";
+        if (redirect === 1) {
+            body = body + "grant_type=identification_code";
+            body = body + "&client_id=" + this.config.APPLICATIONID;
+            body = body + "&scope=api";
+            body = body + "&identification=" + token;
+        }
+        else {
+            body = body + "grant_type=password";
+            body = body + "&username=" + username;
+            body = body + "&password=" + password;
+            body = body + "&scope=api";
+            body = body + "&client_id=" + this.config.APPLICATIONID;
+        }
+        var loginAction;
         loginAction = this
             .http
             .post(conString, body, { headers: headers });
-        // }
-        // } else {
-        //     // console.log("posting", conString);
-        //     // loginAction = this
-        //     //     .http
-        //     //     .post(conString, body);
-        // }
-        // let th: any = this;
-        loginAction.subscribe((data) => {
+        loginAction.subscribe(function (data) {
             console.log("data", data);
             console.log("data._body", data._body);
             try {
-                let datajson = JSON.parse(data._body);
+                var datajson = JSON.parse(data._body);
                 console.log("datajson", datajson);
                 // jwt token: https://jwt.io/
-                let objectdata = datajson.access_token.split(".");
+                var objectdata = datajson.access_token.split(".");
                 console.log("objectdata", objectdata);
-                let bearer = datajson.token_type;
-                let pls = "" + objectdata[1];
+                var bearer = datajson.token_type;
+                var pls = "" + objectdata[1];
                 console.log("pls", pls);
-                let payload = atob(pls);
-                // let signature : any = atob(objectdata[2]);
+                var payload = atob(pls);
+                // let signature: any = atob(objectdata[2]);
                 console.log("payload", payload);
-                let sub = 0;
-                let name = "";
+                var sub = 0;
+                var name_1 = "";
                 if (payload.sub) {
                     sub = payload.sub;
                 }
                 if (payload.name) {
-                    name = payload.name;
+                    name_1 = payload.name;
                 }
-                let cu = {
+                var cu = {
                     "UserId": sub,
-                    "LoggerInUserDisplayName": name
+                    "LoggerInUserDisplayName": name_1
                 };
-                this.currentUser = cu;
-                // window     .sessionStorage     .setItem("CurrentUser", JSON.stringify(cu));
-                // settings for Identity Server
-                this.authenticationToken = "Bearer " + datajson.access_token;
-                // this.authenticationToken = data._body;
-                // window     .sessionStorage     .setItem("Authenticationtoken",
-                // data.AuthenticationToken);
-                this.authenticated = true;
-                // console.log("authenticated", this.authenticated);
+                _this.currentUser = cu;
+                _this.authenticationToken = "Bearer " + datajson.access_token;
+                _this.authenticated = true;
             }
             catch (e) {
                 console.log("e", e);
-                this.authenticationToken = "";
-                // window     .sessionStorage     .setItem("Authenticationtoken", "");
+                _this.authenticationToken = "";
                 return new Error("Authentication Error");
             }
-        }, (error) => {
+        }, function (error) {
             console.log("loginAction error", error);
         });
         return loginAction;
-    }
-    signup(username, password) { alert("not yet implemented"); }
-};
-UserService = __decorate([
-    core_1.Injectable(),
-    __param(0, core_1.Inject(http_1.Http)),
-    __metadata("design:paramtypes", [http_1.Http])
-], UserService);
+    };
+    UserService.prototype.signup = function (username, password) { alert("not yet implemented"); };
+    UserService = __decorate([
+        core_1.Injectable(),
+        __param(0, core_1.Inject(http_1.Http)),
+        __metadata("design:paramtypes", [http_1.Http])
+    ], UserService);
+    return UserService;
+}());
 exports.UserService = UserService;
