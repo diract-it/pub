@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": [
+      "dom",
+      "es2016",
+      "es6"
+    ],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "target": "es5"
+  },
+  "files": [
+    "ceyenne-fo-base.ts",
+    "src/services/log/log.services.ts",
+    "src/services/user/user.services.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "test",
+    "src/environments",
+    "src/mocks.ts",
+    "src/test.ts",
+    "src/polyfills.ts",
+    "src/**/*.spec.ts"
+  ]
+}
