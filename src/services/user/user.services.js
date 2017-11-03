@@ -50,6 +50,8 @@ var UserService = /** @class */ (function () {
     };
     UserService.prototype.login = function (username, password, token, redirect) {
         var _this = this;
+        console.log("token", token);
+        console.log("redirect", redirect);
         var headers = new http_1.Headers({ "Content-Type": "application/x-www-form-urlencoded",
             "Authorization": "Basic " + this.config.CONFIRMATIONTOKEN });
         var conString = this.config.SERVERPROTOCOL + this.config.SERVERURL + ":" + this.config.SERVERPORT + this.config.LOGINURL;
@@ -112,7 +114,10 @@ var UserService = /** @class */ (function () {
         });
         return loginAction;
     };
-    UserService.prototype.signup = function (username, password) { alert("not yet implemented"); };
+    UserService.prototype.signup = function (username, password) {
+        alert("not yet implemented");
+        // alerting
+    };
     UserService = __decorate([
         core_1.Injectable(),
         __param(0, core_1.Inject(http_1.Http)),
