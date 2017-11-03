@@ -3,10 +3,10 @@
   https://medium.com/@OCombe/how-to-publish-a-library-for-angular-2-on-npm-5f48cdabf435
 * Diract IT Copyright 2017
 * Oscar Bout
-* Usage: this code is 'base code' for Front Ends for the Diract IT Ceyenne 2020 suite
+* Usage: this code is 'base code' for Front Ends for the Diract IT Ceyenne suite
 
 # SET UP
-* type 'npm install ceyenne-2020-fo-base'
+* type 'npm install ceyenne'
 
 # TEST
 * run 'npm test'
@@ -21,7 +21,7 @@
 
 # # # # # # # # # # #
 
-import {CeyenneLogService} from 'ceyenne2020-fo-base';
+import {CeyenneLogService} from 'ceyenne;
 
 export class TestPage {
 
