@@ -1,6 +1,6 @@
 {
   "name": "ceyenne",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "ceyenne front end shared classes toolkit",
   "main": "./ceyenne.ts",
   "typings": "./ceyenne.d.ts",
