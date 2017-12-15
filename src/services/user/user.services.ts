@@ -47,7 +47,10 @@ export class UserService implements OnInit {
         this.authenticationToken = "";
     }
 
-    public login(username: string, password: string, token: string, redirect: any, secret?: string): Observable<boolean> {
+    public login(username: string, password: string, token?: string, redirect?: any): Observable<boolean> {
+
+        console.log("token", token);
+        console.log("redirect", redirect);
 
         let headers: Headers = new Headers({ "Content-Type": "application/x-www-form-urlencoded",
         "Authorization": "Basic " + this.config.CONFIRMATIONTOKEN });
@@ -131,5 +134,8 @@ export class UserService implements OnInit {
 
     }
 
-    public signup(username: string, password: string): void {alert("not yet implemented");}
+    public signup(username: string, password: string): void {
+        alert("not yet implemented");
+        // alerting
+    }
 }
