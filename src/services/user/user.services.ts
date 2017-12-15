@@ -47,7 +47,7 @@ export class UserService implements OnInit {
         this.authenticationToken = "";
     }
 
-    public login(username: string, password: string, token: string, redirect: any): Observable<boolean> {
+    public login(username: string, password: string, token: string, redirect: any, secret?: string): Observable<boolean> {
 
         let headers: Headers = new Headers({ "Content-Type": "application/x-www-form-urlencoded",
         "Authorization": "Basic " + this.config.CONFIRMATIONTOKEN });
@@ -66,6 +66,9 @@ export class UserService implements OnInit {
             body = body + "&password=" + password;
             body = body + "&scope=api";
             body = body + "&client_id=" + this.config.APPLICATIONID;
+        }
+        if (secret) {
+            body = body + "&client_secret=" + secret;
         }
 
         let loginAction: any;

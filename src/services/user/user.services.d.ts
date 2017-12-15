@@ -15,6 +15,6 @@ export declare class UserService implements OnInit {
     getAuthenticationtoken(): string;
     getCurrentUser(): any;
     logout(): void;
-    login(username: string, password: string, token: string, redirect: any): Observable<boolean>;
+    login(username: string, password: string, token: string, redirect: any, secret?: string): Observable<boolean>;
     signup(username: string, password: string): void;
 }
