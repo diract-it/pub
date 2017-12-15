@@ -47,7 +47,7 @@ export class UserService implements OnInit {
         this.authenticationToken = "";
     }
 
-    public login(username: string, password: string, token?: string, redirect?: any): Observable<boolean> {
+    public login(username: string, password: string, token?: string, redirect?: any, secret?: string): Observable<boolean> {
 
         console.log("token", token);
         console.log("redirect", redirect);
