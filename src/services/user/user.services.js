@@ -48,7 +48,7 @@ var UserService = /** @class */ (function () {
         this.authenticated = false;
         this.authenticationToken = "";
     };
-    UserService.prototype.login = function (username, password, token, redirect) {
+    UserService.prototype.login = function (username, password, token, redirect, secret) {
         var _this = this;
         console.log("token", token);
         console.log("redirect", redirect);
@@ -68,6 +68,9 @@ var UserService = /** @class */ (function () {
             body = body + "&password=" + password;
             body = body + "&scope=api";
             body = body + "&client_id=" + this.config.APPLICATIONID;
+        }
+        if (secret) {
+            body = body + "&client_secret=" + secret;
         }
         var loginAction;
         loginAction = this
