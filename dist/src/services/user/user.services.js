@@ -39,7 +39,8 @@ var UserService = /** @class */ (function () {
         return this.authenticationToken;
     };
     UserService.prototype.getCurrentUser = function () {
-        // returning current user let curu: any = this.currentUser; let curjson: any =JSON.parse(curu);
+        // returning current user let curu: any = this.currentUser; let curjson: any
+        // =JSON.parse(curu);
         return this.currentUser;
     };
     UserService.prototype.logout = function () {
@@ -52,17 +53,32 @@ var UserService = /** @class */ (function () {
         var _this = this;
         console.log("token", token);
         console.log("redirect", redirect);
-        var headers = new http_1.Headers({ "Content-Type": "application/x-www-form-urlencoded",
-            "Authorization": "Basic " + this.config.CONFIRMATIONTOKEN });
+        var headers;
         var conString = this.config.SERVERPROTOCOL + this.config.SERVERURL + ":" + this.config.SERVERPORT + this.config.LOGINURL;
         var body = "";
         if (redirect === 1) {
+            headers = new http_1.Headers({
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Authorization": "Basic " + this.config.CONFIRMATIONTOKEN
+            });
             body = body + "grant_type=identification_code";
             body = body + "&client_id=" + this.config.APPLICATIONID;
             body = body + "&scope=api";
             body = body + "&identification=" + token;
         }
         else {
+            if (this.config.PASSWORDTOKEN) {
+                headers = new http_1.Headers({
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    "Authorization": "Basic " + this.config.PASSWORDTOKEN
+                });
+            }
+            else {
+                headers = new http_1.Headers({
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    "Authorization": "Basic " + this.config.CONFIRMATIONTOKEN
+                });
+            }
             body = body + "grant_type=password";
             body = body + "&username=" + username;
             body = body + "&password=" + password;
@@ -83,7 +99,9 @@ var UserService = /** @class */ (function () {
                 var datajson = JSON.parse(data._body);
                 console.log("datajson", datajson);
                 // jwt token: https://jwt.io/
-                var objectdata = datajson.access_token.split(".");
+                var objectdata = datajson
+                    .access_token
+                    .split(".");
                 console.log("objectdata", objectdata);
                 var bearer = datajson.token_type;
                 var pls = "" + objectdata[1];
